@@ -1,12 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import NewProject from './components/NewProject';
 
 function App() {
+  const [projects, setProjects] = useState({})
   return (
-    <div className="App">
-      <h1 className='text-red-500'>hellofi</h1>
-    </div>
+    <>
+      <NewProject projects={projects} setProjects={setProjects} />
+    </>
   );
 }
 
