@@ -1,34 +1,22 @@
-// export default function Tasks({ project, projects, setProjects, tasks, setTasks }) {
-//   function deleteTask(id) {
-//     const updatedTasks = tasks.filter((t) => t.id !== id);
+import React from 'react'
 
-//     const updatedProjects = projects.map((p) =>
-//       p.id === project.id ? { ...p, tasks: updatedTasks } : p
-//     );
-//     setProjects(updatedProjects);
+export default function Task({tasks,setTasks,project,projects,setProjects}) {
+  const handleDelete = (id) => {
+    let updatedTasks = tasks.filter((t) => t.id !==id )
 
-//     setTasks(updatedTasks);
-//   }
-
-//   if (!tasks || tasks.length === 0)
-//     return <p className="text-gray-500">No tasks yet — add one above</p>;
-
-//   return (
-//     <ul className="space-y-2">
-//       {tasks.map((task) => (
-//         <li
-//           key={task.id}
-//           className="flex justify-between items-center bg-gray-100 p-2 rounded"
-//         >
-//           <span>{task.title}</span>
-//           <button
-//             onClick={() => deleteTask(task.id)}
-//             className="text-red-600 text-sm hover:underline"
-//           >
-//             Delete
-//           </button>
-//         </li>
-//       ))}
-//     </ul>
-//   );
-// }
+    let updatedProject = projects.map((p) => p.id === project.id ? {...p,tasks:updatedTasks} : p )
+    setProjects(updatedProject)
+    setTasks(updatedTasks)
+    console.log(project);
+  }
+return (
+    <div className="mt-6">
+     <ul className="space-y-3">
+      {tasks.map((t) => (
+        <li key={t.id} className="flex items-center justify-between bg-stone-100 px-4 py-3 rounded-md"><span className="text-stone-700">{t.title} </span>
+        <button onClick={() => handleDelete(t.id)} className="text-stone-500 hover:text-red-500 text-sm">Clear</button></li>
+      ))}
+     </ul>
+    </div>
+  )
+}

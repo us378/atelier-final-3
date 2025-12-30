@@ -1,34 +1,25 @@
-// import { useState } from "react";
+import React, { useState } from 'react'
 
-// export default function NewTask({ project, projects, setProjects, tasks, setTasks }) {
-//   const [value, setValue] = useState("");
+function NewTasks({tasks,setTasks,project,projects,setProjects}) {
+    const [input,setInp] = useState("")
+    const addTask = (e) => {
+        e.preventDefault()
+        let newTask = {id:tasks.length + 1,title:input}
+        let updatedProject = projects.map((p) => p.id === project.id ? {...p,tasks:[...p.tasks,newTask]} : p)
+        setProjects(updatedProject)
+        setTasks([...tasks,newTask])
+        console.log(tasks);
+        console.log(updatedProject);
+        setInp("")
+    }
+  return (
+    <div className="flex items-center gap-3 mt-4">
+        <input className="flex-1 bg-stone-100 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-400"
+ type="text" value={input} onChange={(e) => setInp(e.target.value) } />
+        <button onClick={addTask} className="text-stone-600 hover:text-stone-900 font-medium"
+>add Tasks</button>
+    </div>
+  )
+}
 
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     if (!value.trim()) return;
-
-//     const newTask = { id: Date.now().toString(), title: value };
-
-//     // Update tasks for the selected project
-//     const updatedProjects = projects.map((p) =>
-//       p.id === project.id ? { ...p, tasks: [...p.tasks, newTask] } : p
-//     );
-//     setProjects(updatedProjects);
-
-//     // Update local tasks state
-//     setTasks([...tasks, newTask]);
-//     setValue("");
-//   }
-
-//   return (
-//     <form onSubmit={handleSubmit} className="flex gap-2">
-//       <input
-//         className="border px-3 py-2 flex-1 rounded"
-//         placeholder="New task..."
-//         value={value}
-//         onChange={(e) => setValue(e.target.value)}
-//       />
-//       <button className="px-4 py-2 bg-black text-white rounded">Add</button>
-//     </form>
-//   );
-// }
+export default NewTasks
