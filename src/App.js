@@ -7,24 +7,37 @@ import NewProject from "./components/NewProject";
 
 
 export default function App() {
-  const [projects, setProjects] = useState([{id:0,title:"new project",tasks:[]}]);
+  const [projects, setProjects] = useState([]);
   const [selectedProjectId, setSelectedProjectId] = useState(null || undefined || Number);
   const [tasks, setTasks] = useState([]);
   const selectedProject = projects.find((p) => p.id === selectedProjectId) || null;
+
+  const [addingProject, setAddingProject] = useState(false);
   console.log(selectedProject);
   
+
+  const handleStartAddProject = () => {
+    setAddingProject(true);
+  };
+
+  const handleProjectAdded = (newProject) => {
+    setProjects([...projects, newProject]);
+    setAddingProject(false);
+  };
   return (
     <div className="flex h-screen">
       <aside className="w-80 bg-stone-900 text-white p-4">
-        <ProjectsSidebar projects={projects} selectedProjectId={selectedProjectId} onSelectProject={setSelectedProjectId} />
+        <ProjectsSidebar projects={projects} selectedProjectId={selectedProjectId} onSelectProject={setSelectedProjectId} onStartAddProject={handleStartAddProject} />
       </aside>
 
       <main className="flex-1 p-8 space-y-6">
+        {addingProject && (
+          <NewProject projects={projects} setProjects={handleProjectAdded} />
+        )}
         {!selectedProject && <p>Select a project or create one.</p>}
 
         {selectedProject && (
           <>
-          <NewProject />
           <SelectedProject  project={selectedProject} />
           <NewTask tasks={tasks} setTasks={setTasks} project={selectedProject} projects={projects} setProjects={setProjects}/>
           <Tasks tasks={tasks} setTasks={setTasks} project={selectedProject} projects={projects} setProjects={setProjects}/>

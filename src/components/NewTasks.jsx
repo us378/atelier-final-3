@@ -4,10 +4,10 @@ function NewTasks({tasks,setTasks,project,projects,setProjects}) {
     const [input,setInp] = useState("")
     const addTask = (e) => {
         e.preventDefault()
-        let newTask = {id:tasks.length + 1,title:input}
+        let newTask = {id:tasks.length + 1,title:input, projectId: project.id}
+        setTasks([...tasks,newTask])
         let updatedProject = projects.map((p) => p.id === project.id ? {...p,tasks:[...p.tasks,newTask]} : p)
         setProjects(updatedProject)
-        setTasks([...tasks,newTask])
         console.log(tasks);
         console.log(updatedProject);
         setInp("")
