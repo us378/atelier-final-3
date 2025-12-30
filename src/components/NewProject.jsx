@@ -23,11 +23,19 @@ function NewProject({projects, setProjects}) {
             setShowModal(false)
             setErrors([])
 
+                const newProject = {
+                id: projects.length ? projects[projects.length - 1].id + 1 : 0,
+                title: titleRef.current.value,
+                description: descriptionRef.current.value,
+                date: dateRef.current.value,
+                tasks: [],
+                };
+                setProjects(newProject)
             // setProjects({
             //     title: titleRef.current.value,
             //     description: descriptionRef.current.value,
             //     date: dateRef.current.value,
-            // })
+            // })in app
 
             titleRef.current.value = ''
             descriptionRef.current.value = ''
