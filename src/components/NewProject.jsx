@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import Modal from './Modal'
 import Button from './Button'
+import Input from './Input'
 
 function NewProject({projects, setProjects}) {
     const [showModal, setShowModal] = useState(false)
@@ -67,12 +68,10 @@ function NewProject({projects, setProjects}) {
                         <button onClick={handleSubmit} className='border w-20 h-10 pointer bg-black text-white text-sm rounded-md'>Save</button>
                     </div>
                     <div className='flex flex-col'>
-                        <label className='project-label' htmlFor="title">Title</label>
-                        <input className='project-input' type="text" name="title" ref={titleRef} />
-                        <label className='project-label' htmlFor="description">Description</label>
-                        <textarea className='project-input' name="description" ref={descriptionRef} rows="2" ></textarea>
-                        <label className='project-label' htmlFor="title">Due Date</label>
-                        <input className='project-input' type="date" name="date" ref={dateRef} />
+
+                        <Input title={'Title'} type={'text'} name={'title'} ref={titleRef} />
+                        <Input title={"Description"} type={'textarea'} name={'description'} ref={descriptionRef} />
+                        <Input title={'Due Date'} type={"date"} name={'date'} ref={dateRef} />
                     </div>
                 </form>
             </div>

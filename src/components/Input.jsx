@@ -1,10 +1,20 @@
 import React from 'react'
 
-function Input() {
+function Input({title, type, name, ref}) {
+
+  if(type === 'textarea'){
+    return (
+      <>
+        <label className='project-label' htmlFor={name}>{title}</label>
+        <textarea className='project-input' name={name} ref={ref} rows="2" ></textarea>
+      </>
+    )
+  }
+
   return (
     <>
-        {/* <label className='project-label' htmlFor="title">Title</label>
-        <input className='project-input' type="text" name="title" value={formData.title} onChange={handleChange}  /> */}
+        <label className='project-label' htmlFor={name}>{title}</label>
+        <input className='project-input' type={type} name={name} ref={ref} />
     </>
   )
 }
