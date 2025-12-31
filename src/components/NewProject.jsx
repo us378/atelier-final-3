@@ -66,9 +66,7 @@ function NewProject({projects, setProjects}) {
 
   return (
     <>
-        {showModal ? <Modal errors={errors} handleCloseModal={handleCloseModal} /> : ""}
-        
-        <div className='p-4 bg-[#fafaf9] min-h-screen w-full'>
+        <div className={`p-4 bg-[#fafaf9] min-h-screen w-full ${showModal ? 'pointer-events-none blur-sm' : ''} `}>
             <div className='flex flex-col w-[80%]'>
                 <form>
                     <div className='flex justify-end items-center w-full gap-2'>
@@ -83,6 +81,7 @@ function NewProject({projects, setProjects}) {
                 </form>
             </div>
         </div>
+        {showModal ? <Modal errors={errors} handleCloseModal={handleCloseModal} /> : ""}
     </>
   )
 }
