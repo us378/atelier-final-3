@@ -4,6 +4,7 @@ import ProjectsSidebar from "./components/ProjectSidebar";
 import NewTask from "./components/NewTasks";
 import Tasks from "./components/Task";
 import NewProject from "./components/NewProject";
+import NoProjectSelected from "./components/NoProjectSelected";
 
 
 export default function App() {
@@ -34,11 +35,11 @@ export default function App() {
         {addingProject && (
           <NewProject projects={projects} setProjects={handleProjectAdded} />
         )}
-        {!selectedProject && <p className="p-8">Select a project or create one.</p>}
+        {!selectedProject && <NoProjectSelected onStartAddProject={handleStartAddProject}/>}
 
         {selectedProject && (
           <>
-          <SelectedProject  project={selectedProject} />
+          <SelectedProject  project={selectedProject}   projects={projects} setProjects={setProjects}/>
           <NewTask tasks={tasks} setTasks={setTasks} project={selectedProject} projects={projects} setProjects={setProjects}/>
           <Tasks tasks={tasks} setTasks={setTasks} project={selectedProject} projects={projects} setProjects={setProjects}/>
           </>
