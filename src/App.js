@@ -30,11 +30,11 @@ export default function App() {
         <ProjectsSidebar projects={projects} selectedProjectId={selectedProjectId} onSelectProject={setSelectedProjectId} onStartAddProject={handleStartAddProject} />
       </aside>
 
-      <main className="flex-1 p-8 space-y-6">
+      <main className="flex-1 space-y-6">
         {addingProject && (
           <NewProject projects={projects} setProjects={handleProjectAdded} />
         )}
-        {!selectedProject && <p>Select a project or create one.</p>}
+        {!selectedProject && <p className="p-8">Select a project or create one.</p>}
 
         {selectedProject && (
           <>

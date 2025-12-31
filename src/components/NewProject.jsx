@@ -68,15 +68,14 @@ function NewProject({projects, setProjects}) {
     <>
         {showModal ? <Modal errors={errors} handleCloseModal={handleCloseModal} /> : ""}
         
-        <div className='p-4 bg-[#fafaf9] min-h-screen w-full inset-0'>
+        <div className='p-4 bg-[#fafaf9] min-h-screen w-full'>
             <div className='flex flex-col w-[80%]'>
                 <form>
                     <div className='flex justify-end items-center w-full gap-2'>
-                        <button type='reset' className='w-20 h-10 pointer rounded-md'>Cancel</button>
-                        <button onClick={handleSubmit} className='border w-20 h-10 pointer bg-black text-white text-sm rounded-md'>Save</button>
+                        <Button text={'Cancel'} type={'reset'} />
+                        <Button text={'Save'} type={'submit'} onClick={handleSubmit} />
                     </div>
                     <div className='flex flex-col'>
-
                         <Input title={'Title'} type={'text'} name={'title'} ref={titleRef} />
                         <Input title={"Description"} type={'textarea'} name={'description'} ref={descriptionRef} />
                         <Input title={'Due Date'} type={"date"} name={'date'} ref={dateRef} />
